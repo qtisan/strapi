@@ -8,7 +8,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const argv = require('minimist')(process.argv.slice(2));
 
-const { DEV_ALIAS } = require('./configs/alias');
 const paths = require('./configs/paths');
 
 const { __PORT__ } = require('./configs/globals');
@@ -76,7 +75,6 @@ module.exports = require('./webpack.base.babel')({
     require.resolve('babel-preset-stage-0'),
     require.resolve('babel-preset-react-hmre'),
   ],
-  alias: DEV_ALIAS,
   // Emit a source map for easier debugging
   devtool: 'cheap-module-source-map',
 });

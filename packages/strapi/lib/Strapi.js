@@ -367,15 +367,18 @@ class Strapi extends EventEmitter {
 
     if (file.indexOf('strapi-plugin-') !== -1) {
       pluginPath = file.split(path.sep).filter(x => x.indexOf('strapi-plugin-') !== -1)[0];
+      console.log({pluginPath})
     } else if (file.indexOf(path.sep + 'plugins' + path.sep) !== -1) {
       const pathTerms = file.split(path.sep);
       const index = pathTerms.indexOf('plugins');
 
       if (index !== -1) {
         pluginPath = pathTerms[index + 1];
+        console.log({pluginPath})
       }
     }
-
+    console.log({pluginPath})
+  
     if (!pluginPath) {
       return this.log.error('Impossible to find the plugin where `strapi.query` has been called.');
     }

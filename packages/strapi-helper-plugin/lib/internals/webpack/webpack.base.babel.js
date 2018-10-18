@@ -8,6 +8,7 @@ const _ = require('lodash');
 
 const { __IS_ADMIN__, __IS_MONOREPO__, __NODE_ENV__, __NPM_START_EVENT__, __PROD__, __PWD__ } = require('./configs/globals');
 const paths = require('./configs/paths');
+const { COMMON_ALIAS } = require('./configs/alias');
 
 const plugins = require('./configs/plugins');
 
@@ -78,7 +79,7 @@ const foldersToInclude = [path.join(adminPath, 'admin', 'src')]
   .concat([path.join(adminPath, 'node_modules', 'strapi-helper-plugin', 'lib', 'src')]);
 
 module.exports = options => {
-  const { alias, babelPresets, devtool, disableExtractTextPlugin, entry, externals,  output, plugins, } = options
+  const { alias, babelPresets, devtool, disableExtractTextPlugin, entry, externals,  output, plugins, } = options;
   
   // The disable option is only for production
   // Config from https://github.com/facebook/create-react-app/blob/next/packages/react-scripts/config/webpack.config.prod.js
@@ -266,7 +267,7 @@ module.exports = options => {
         'node_modules/strapi-helper-plugin/node_modules',
         'node_modules',
       ],
-      alias: alias,
+      alias: _.isEmpty(alias) ? COMMON_ALIAS : alias,
       symlinks: false,
       extensions: ['.js', '.jsx', '.react.js'],
       mainFields: ['browser', 'jsnext:main', 'main'],

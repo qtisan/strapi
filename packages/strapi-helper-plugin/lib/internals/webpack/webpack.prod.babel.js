@@ -2,12 +2,12 @@
 const path = require('path');
 const _ = require('lodash');
 
-const { __IS_ADMIN__, __IS_MONOREPO__,  __PWD__} = require('./configs/globals');
+const { __IS_ADMIN__, __IS_MONOREPO__, __PWD__ } = require('./configs/globals');
 const paths = require('./configs/paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const postcssPlugins = require('./configs/postcssOptions');
-const { PROD_ALIAS } = require('./configs/alias');
+const { COMMON_ALIAS } = require('./configs/alias');
 
 const webpack = require('webpack');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -23,7 +23,7 @@ const adminPath = (() => {
   if (__IS_MONOREPO__) {
     return __IS_ADMIN__ ? paths.strapiAdmin : path.resolve(__PWD__, '..');
   }
-  
+
   return paths.admin;
 })();
 
@@ -153,8 +153,6 @@ module.exports = base({
     require.resolve('babel-preset-react'),
     require.resolve('babel-preset-stage-0'),
   ],
-
-  alias: PROD_ALIAS,
   devtool: 'cheap-module-source-map',
   disableExtractTextPlugin: false,
   externals: {},
